@@ -1,0 +1,15 @@
+<h1>Flight Edit</h1>
+
+<div *ngIf="exitDialog.show" class="alert alert-warning">
+        <div>
+        Daten wurden nicht gespeichert! Trotzdem Maske verlassen?
+        </div>
+        <div>
+            <a href="javascript:void(0)" (click)="placeExitDecision(true)" class="btn btn-danger">Ja</a>
+            <a href="javascript:void(0)" (click)="placeExitDecision(false)" class="btn btn-default">Nein</a>
+        </div>
+</div>
+
+<p>
+    Under construction ... Id: {{id}} ...
+</p>    

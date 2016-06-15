@@ -1,0 +1,76 @@
+<h1>Flight Search!</h1>
+
+<form #f="ngForm">
+
+<div class="form-group">
+    <label>From</label>
+    <input 
+        class="form-control" 
+        [(ngModel)]="from"
+        ngControl="from"
+        name="from"
+        city="Graz,Hamburg,Frankfurt,Düsseldorf"
+        required
+        minlength="3"
+        maxlength="30">
+
+    <div *ngIf="!f?.controls?.from?.valid">
+        Error!
+    </div>
+
+    <div *ngIf="f?.controls?.from?.hasError('required')">
+        Required!
+    </div>
+    <div *ngIf="f?.controls?.from?.hasError('minlength')">
+        MinLength!
+    </div>
+    <div *ngIf="f?.controls?.from?.hasError('maxlength')">
+        MaxLength!
+    </div>
+    <div *ngIf="f?.controls?.from?.hasError('city')">
+        City!
+    </div>
+
+
+</div>
+
+<div class="form-group">
+    <label>To</label>
+    <input class="form-control" [(ngModel)]="to">
+</div>
+
+<div class="form-group">
+    <button 
+        [disabled]="!from || !to"
+        class="btn btn-default" 
+        (click)="search()">Search!</button>
+</div>
+</form>
+
+
+<!--
+<table class="table table-striped">
+
+    <tr *ngFor="let flight of flights" [class.active]="flight == selectedFlight">
+        <td>{{flight.id}}</td>
+        <td>{{flight.date}}</td>
+        <td>{{flight.from | city:'short'}}</td>
+        <td>{{flight.to | city:'long'}}</td>
+        <td><a (click)="select(flight)">Select</a></td>
+    </tr>
+
+</table>
+-->
+<div *ngFor="let flight of flights" class="col-sm-4">
+    <flight-card    [item]="flight"
+                    [(selectedItem)]="selectedFlight">
+        <a class="btn btn-default" [routerLink]="['../flight-edit', flight.id]">Edit</a>
+    </flight-card>
+    
+</div>    
+
+
+<pre>Warenkorb:
+------------------
+{{selectedFlight | json}} 
+</pre>

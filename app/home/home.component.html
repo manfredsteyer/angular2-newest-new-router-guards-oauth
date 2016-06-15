@@ -1,0 +1,10 @@
+<h1 *ngIf="!userName">Welcome!</h1>
+<h1 *ngIf="userName">Hello, {{userName}}!</h1>
+<p>Welcome to this demo-application.</p>
+<p>
+    <button (click)="login()" class="btn btn-default">Login</button>
+    <button (click)="logout()" class="btn btn-default">Logout</button>
+</p>    
+<p>
+    Username/Passwort: max/geheim
+</p>
