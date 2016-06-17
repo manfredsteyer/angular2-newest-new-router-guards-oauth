@@ -2,6 +2,10 @@ var webpack = require('webpack');
 
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 
+var plugins = [];
+console.log("Running in NODE Environment: " + process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'production') plugins.push(new CommonsChunkPlugin({ name: 'vendor' }));
+
 module.exports = {
     debug: true,
     devtool: 'source-map',
@@ -26,9 +30,7 @@ module.exports = {
         ]
     },
     modulesDirectories: ['node_modules'],
-    plugins: [
-        new CommonsChunkPlugin({ name: 'vendor' })
-    ],
+    plugins: plugins,
     node: {
         __filename: true
     },
